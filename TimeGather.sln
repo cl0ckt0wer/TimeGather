@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeGatherFramework", "TimeGatherFramework\TimeGatherFramework.csproj", "{BBF903CF-633D-4E93-AA69-56F113C379D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeGatherCore", "TimeGatherCore\TimeGatherCore.csproj", "{782EE25D-DAE5-46B3-AE03-9693AA197F73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBF903CF-633D-4E93-AA69-56F113C379D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF903CF-633D-4E93-AA69-56F113C379D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF903CF-633D-4E93-AA69-56F113C379D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF903CF-633D-4E93-AA69-56F113C379D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{782EE25D-DAE5-46B3-AE03-9693AA197F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{782EE25D-DAE5-46B3-AE03-9693AA197F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{782EE25D-DAE5-46B3-AE03-9693AA197F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{782EE25D-DAE5-46B3-AE03-9693AA197F73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E0E48036-65F8-4FF6-93CF-0C5F6A400BB4}
+	EndGlobalSection
+EndGlobal
