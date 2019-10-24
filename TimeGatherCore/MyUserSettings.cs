@@ -30,6 +30,7 @@ namespace TimeGatherCore
             set
             {
                 this["Isprefixfilterenabled"] = (bool)value;
+                this.Save();
             }
         }
         [UserScopedSetting()]

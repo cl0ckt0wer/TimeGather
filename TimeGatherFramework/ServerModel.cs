@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
-using System.Text;
 
 namespace TimeGatherFramework
 {
@@ -16,18 +13,19 @@ namespace TimeGatherFramework
         public string Source { get; set; }
         public static ServerModel Updatethesecondsoffset(ServerModel comp)
         {
+            if (comp is null)
+            {
+                throw new ArgumentNullException("comp", "Cannot be null");
+            }
             try
             {
-                var t = (TimeSpan)(DateTime.Now - RemoteTOD.GetNow(comp.Name, true));
-                comp.SecondsOffset = (int)t.Seconds;
-                comp.SecondsOffset = Math.Abs(comp.SecondsOffset);
+                comp.SecondsOffset = (int)((DateTime)RemoteTOD.GetNow(comp.Name, true) - DateTime.Now).TotalSeconds;
             }
             catch (Exception ex)
             {
                 comp.ErrorMessage = ex.Message;
             }
             return comp;
-
         }
     }
     public class ServerModels : INotifyCollectionChanged

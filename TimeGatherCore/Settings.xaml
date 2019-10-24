@@ -8,7 +8,7 @@
         Closing="DataWindow_Closing"
         Title="Settings" Height="300" Width="245.688">
     <Grid >
-        <CheckBox Content="Enable Prefix Filter" IsChecked="{Binding FilterEnabled}" Height="Auto" Width="Auto"/>
+        <CheckBox Content="Enable Prefix Filter" IsChecked="{Binding FilterEnable.Value}" Height="Auto" Width="Auto"/>
         <ListBox HorizontalAlignment="Left" Height="249" Margin="132,10,0,0" VerticalAlignment="Top" Width="96" ItemsSource="{Binding Filters}" Name="Filterbox"/>
         <Button Content="Add to Filter" Margin="0,52,111,174" Click="AddFilterPrefix_Click" />
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding AddThisPrefix}" VerticalAlignment="Top" Width="127" Margin="0,24,0,0" />

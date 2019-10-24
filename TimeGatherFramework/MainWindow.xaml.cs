@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Threading.Tasks.Dataflow;
 using System.Windows;
@@ -21,7 +21,7 @@ namespace TimeGatherFramework
             Mainwin.Title = "TimeGather is collecting data...";
             Servermodelsdatacontext = new ServerModels();
             Servermodelsdatacontext.ServerModelList = new ObservableCollection<ServerModel>();
-            bool enableprefixfilter = myoption.Isprefixfilterenabled;
+            Enableprefixfilter.Value = myoption.Isprefixfilterenabled;
 
             //StringCollection prefixes = myoption.Filters;
             //if (prefixes == null || prefixes.Count == 0)
@@ -42,12 +42,12 @@ namespace TimeGatherFramework
               var tq = new TimeQuery();
               temp.Source = tq.GetTimeSource(temp.Name);
               Application.Current.Dispatcher.BeginInvoke(new Action(() => this.Servermodelsdatacontext.ServerModelList.Add(temp)));
-          }, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = ExecutionDataflowBlockOptions.Unbounded }
+          }, new ExecutionDataflowBlockOptions() { MaxDegreeOfParallelism = 128 }
            );
 
-            if (enableprefixfilter)
+            if (Enableprefixfilter.Value)
             {
-                var f = JsonConvert.DeserializeObject<ObservableCollection<string>>(myoption.Filters);
+                var f = JsonConvert.DeserializeObject<string[]>(myoption.Filters);
                 computers = (from pc in computers
                              where FilterByPrefix(pc, f) == true
                              select pc).ToList();
@@ -77,6 +77,7 @@ namespace TimeGatherFramework
 
         public ServerModels Servermodelsdatacontext { get; set; }
         public ActionBlock<ServerModel> TimeQueryActionBlock { get; set; }
+        public static Prop<bool> Enableprefixfilter { get; set; } = new Prop<bool> { Value = true };
 
         //public ServerModel Loading { get; set; }
         private async void Window_Loaded(object sender, RoutedEventArgs e)

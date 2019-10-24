@@ -24,30 +24,25 @@ namespace TimeGatherCore
     {
         public string AddThisPrefix { get; set; }
         public ObservableCollection<string> Filters { get; set; }
-        public bool FilterEnable { get; set; }
+        
+        public static Prop<bool> FilterEnable { get; set; } = new Prop<bool> { Value = true };
+
         public Settings()
         {
             InitializeComponent();
             var s = new MyUserSettings();
             Filters = new ObservableCollection<string>(JsonSerializer.Deserialize<string[]>(s.Filters));
-            FilterEnable = s.Isprefixfilterenabled;
+            FilterEnable.Value = s.Isprefixfilterenabled;
             DataContext = this;
         }
 
         private void DataWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             var s = new MyUserSettings();
-            s.Isprefixfilterenabled = FilterEnable;
+            s.Isprefixfilterenabled = FilterEnable.Value;
             s.Filters = JsonSerializer.Serialize(Filters.ToArray());
             s.Save();
             MessageBox.Show("You must restart the application for changes to take effect.", "FYI", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-        }
-
-
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void AddFilterPrefix_Click(object sender, RoutedEventArgs e)
