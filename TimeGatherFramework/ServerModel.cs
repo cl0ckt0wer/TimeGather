@@ -24,6 +24,10 @@ namespace TimeGatherFramework
             catch (Exception ex)
             {
                 comp.ErrorMessage = ex.Message;
+                if (ex.Message.IndexOf("time", StringComparison.OrdinalIgnoreCase) > 0)
+                {
+                    comp.SecondsOffset = 999;
+                }
             }
             return comp;
         }
